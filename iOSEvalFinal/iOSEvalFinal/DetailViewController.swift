@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class DetailViewController: UIViewController {
 
@@ -29,18 +30,45 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        gameTitleLabel.text = passData.name
+        // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
+        if let imageURL = URL(string: passData.largeCapsuleImage) {
+            gameImageView.af.setImage(withURL: imageURL)
+        }
+        
+        discountPriceLabel.isHidden = !passData.discounted
+        let oldPrice = String(format: "%.2f", passData.originalPrice! / 100) + "€"
+        let attributedText = NSAttributedString(
+            string: oldPrice,
+            attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
+        )
+
+        oldPriceLabel.attributedText = attributedText
+
+        oldPriceLabel.isHidden = !passData.discounted
+        discountPriceLabel.text = "\(passData.discountPercent) %"
+        if passData.discounted {
+            newPriceLabel.textColor = UIColor.green
+        } else {
+            newPriceLabel.textColor = UIColor.white
+        }
+        newPriceLabel.text = String(format: "%.2f", passData.finalPrice! / 100) + "€"
+        
+        windowsImage.image = UIImage(named: "windows")
+        windowsImage.isHidden = !passData.windowsAvailable
+        macImage.image = UIImage(named: "mac")
+        macImage.isHidden = !passData.macAvailable
+        linuxImage.image = UIImage(named: "linux")
+        linuxImage.isHidden = !passData.linuxAvailable
+        
+        gamepadImage.isHidden = !(passData.controllerSupport == "full")
     }
     
 
     /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
+   
     */
 
 }

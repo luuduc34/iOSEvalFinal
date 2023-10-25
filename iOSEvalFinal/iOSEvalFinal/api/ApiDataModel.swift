@@ -27,8 +27,8 @@ struct Featured: Codable {
     let name: String
     let discounted: Bool
     let discountPercent: Int
-    let originalPrice: Int?
-    let finalPrice: Int?
+    let originalPrice: Float?
+    let finalPrice: Float?
     let currency: Currency
     let largeCapsuleImage, smallCapsuleImage: String
     let windowsAvailable, macAvailable, linuxAvailable, streamingvideoAvailable: Bool

@@ -35,6 +35,8 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         gameCollectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil),
                                 forCellWithReuseIdentifier: "CustomCollectionViewCell")
         appelReseau()
+        
+        DataService.shared.addFavorite(id: 32, name: "Sonic", price: 35, imageUrl: "Hello")
     }
     
     // MARK: - Connexion à l'api
@@ -74,10 +76,30 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         let gameData = gameList[indexPath.row]
         // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
         if let imageURL = URL(string: gameData.largeCapsuleImage) {
-            customCell.gameTitleLabel.text = gameData.name
             customCell.gameImage.af.setImage(withURL: imageURL)
-            customCell.gamePriceLabel.text = String(format: "%.1f", gameData.finalPrice ?? 8)
         }
+        customCell.gameTitleLabel.text = gameData.name
+        
+        customCell.discountLabel.isHidden = !gameData.discounted
+        let oldPrice = String(format: "%.2f", (gameData.originalPrice ?? 8) / 100) + "€"
+        let attributedText = NSAttributedString(
+            string: oldPrice,
+            attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
+        )
+
+        customCell.oldPriceLabel.attributedText = attributedText
+
+        customCell.oldPriceLabel.isHidden = !gameData.discounted
+        
+        customCell.discountLabel.text = "\(gameData.discountPercent) %"
+        if gameData.discounted {
+            customCell.gamePriceLabel.textColor = UIColor.green
+        } else {
+            customCell.gamePriceLabel.textColor = UIColor.white
+        }
+        
+        customCell.gamePriceLabel.text = String(format: "%.2f", gameData.finalPrice! / 100) + "€"
+        
         return customCell
     }
     

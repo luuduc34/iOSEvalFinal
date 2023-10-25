@@ -9,6 +9,8 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
+    @IBOutlet weak var favoriteTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 title = "Favorites list"

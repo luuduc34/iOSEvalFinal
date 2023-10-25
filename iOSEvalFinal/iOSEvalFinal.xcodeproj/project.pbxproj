@@ -20,6 +20,10 @@
 		65DBF1632AE8FBF500FB971B /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65DBF1612AE8FBF500FB971B /* CustomCollectionViewCell.xib */; };
 		65DBF1662AE902A400FB971B /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 65DBF1652AE902A400FB971B /* AlamofireImage */; };
 		65DBF1682AE90CA200FB971B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1672AE90CA200FB971B /* DetailViewController.swift */; };
+		65DBF16B2AE9213C00FB971B /* FavoriteDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1692AE9213C00FB971B /* FavoriteDB.xcdatamodeld */; };
+		65DBF1732AE9226600FB971B /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1712AE9226600FB971B /* Favorite+CoreDataClass.swift */; };
+		65DBF1742AE9226600FB971B /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1722AE9226600FB971B /* Favorite+CoreDataProperties.swift */; };
+		65DBF1762AE9228F00FB971B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1752AE9228F00FB971B /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		65DBF1602AE8FBF500FB971B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		65DBF1612AE8FBF500FB971B /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		65DBF1672AE90CA200FB971B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		65DBF16A2AE9213C00FB971B /* Favorite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorite.xcdatamodel; sourceTree = "<group>"; };
+		65DBF1712AE9226600FB971B /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65DBF1722AE9226600FB971B /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		65DBF1752AE9228F00FB971B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 		65DBF13E2AE8F46100FB971B /* iOSEvalFinal */ = {
 			isa = PBXGroup;
 			children = (
+				65DBF16C2AE9217300FB971B /* dataBase */,
 				65DBF15D2AE8FB9D00FB971B /* views */,
 				65DBF15A2AE8F74D00FB971B /* api */,
 				65DBF13F2AE8F46100FB971B /* AppDelegate.swift */,
@@ -116,6 +125,17 @@
 				65DBF1552AE8F5C700FB971B /* FavoritesViewController.swift */,
 			);
 			path = favorite;
+			sourceTree = "<group>";
+		};
+		65DBF16C2AE9217300FB971B /* dataBase */ = {
+			isa = PBXGroup;
+			children = (
+				65DBF1712AE9226600FB971B /* Favorite+CoreDataClass.swift */,
+				65DBF1722AE9226600FB971B /* Favorite+CoreDataProperties.swift */,
+				65DBF1692AE9213C00FB971B /* FavoriteDB.xcdatamodeld */,
+				65DBF1752AE9228F00FB971B /* DataService.swift */,
+			);
+			path = dataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DBF1542AE8F5BB00FB971B /* GamesViewController.swift in Sources */,
+				65DBF1742AE9226600FB971B /* Favorite+CoreDataProperties.swift in Sources */,
 				65DBF1622AE8FBF500FB971B /* CustomCollectionViewCell.swift in Sources */,
 				65DBF1402AE8F46100FB971B /* AppDelegate.swift in Sources */,
 				65DBF1562AE8F5C700FB971B /* FavoritesViewController.swift in Sources */,
+				65DBF1762AE9228F00FB971B /* DataService.swift in Sources */,
+				65DBF1732AE9226600FB971B /* Favorite+CoreDataClass.swift in Sources */,
 				65DBF15C2AE8F78000FB971B /* ApiDataModel.swift in Sources */,
+				65DBF16B2AE9213C00FB971B /* FavoriteDB.xcdatamodeld in Sources */,
 				65DBF1422AE8F46100FB971B /* SceneDelegate.swift in Sources */,
 				65DBF1682AE90CA200FB971B /* DetailViewController.swift in Sources */,
 			);
@@ -459,6 +483,19 @@
 			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		65DBF1692AE9213C00FB971B /* FavoriteDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				65DBF16A2AE9213C00FB971B /* Favorite.xcdatamodel */,
+			);
+			currentVersion = 65DBF16A2AE9213C00FB971B /* Favorite.xcdatamodel */;
+			path = FavoriteDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 65DBF1342AE8F46100FB971B /* Project object */;
 }
