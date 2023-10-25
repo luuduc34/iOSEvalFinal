@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Favorites list"
-        
+        navigationController?.navigationBar.tintColor = .white
         favoriteTableView.delegate = self
         favoriteTableView.dataSource = self
         // lier le nib avec la customCell

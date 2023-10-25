@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.tintColor = .white
         gameTitleLabel.text = passData.name
         // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
         if let imageURL = URL(string: passData.largeCapsuleImage) {
@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
         }
         
         discountPriceLabel.isHidden = !passData.discounted
-        let oldPrice = String(format: "%.2f", passData.originalPrice! / 100) + "€"
+        let oldPrice = String(format: "%.2f", (passData.originalPrice ?? 8) / 100) + "€"
         let attributedText = NSAttributedString(
             string: oldPrice,
             attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]

@@ -18,7 +18,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Games list"
-        
+        navigationController?.navigationBar.tintColor = .white
         // Configure le layout de la collectionView
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
