@@ -9,6 +9,23 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var gameTitleLabel: UILabel!
+    @IBOutlet weak var gameImageView: UIImageView!
+    
+    @IBOutlet weak var discountPriceLabel: UILabel!
+    @IBOutlet weak var oldPriceLabel: UILabel!
+    @IBOutlet weak var newPriceLabel: UILabel!
+    
+    @IBOutlet weak var windowsImage: UIImageView!
+    @IBOutlet weak var macImage: UIImageView!
+    @IBOutlet weak var linuxImage: UIImageView!
+    
+    @IBOutlet weak var keyboardImage: UIImageView!
+    @IBOutlet weak var mouseImage: UIImageView!
+    @IBOutlet weak var gamepadImage: UIImageView!
+    
+    var passData: Featured!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -80,4 +80,12 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         return customCell
     }
+    
+    // Cellule cliquable
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let gameData = gameList[indexPath.row]
+        let detailViewController = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController
+        detailViewController?.passData = gameData
+        navigationController?.pushViewController(detailViewController!, animated: true)
+    }
 }
