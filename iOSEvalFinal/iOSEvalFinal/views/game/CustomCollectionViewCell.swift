@@ -8,20 +8,18 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var gameTitleLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var oldPriceLabel: UILabel!
     @IBOutlet weak var gamePriceLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
-    @IBOutlet weak var favIco: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    @IBAction func favBtn() {
+        
         
     }
+ 
 }

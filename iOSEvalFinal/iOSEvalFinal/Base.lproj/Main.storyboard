@@ -92,7 +92,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kHV-pz-lIY">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="customBlue"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wbx-E0-zVC"/>
@@ -249,12 +249,30 @@
                                 <rect key="frame" x="104" y="753.66666666666663" width="185" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Plus d'info sur Steam"/>
+                                <connections>
+                                    <action selector="openWebPage:" destination="F0T-JU-BD1" eventType="touchUpInside" id="d2J-2E-kUy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJT-gv-Lxe">
+                                <rect key="frame" x="179" y="598.33333333333337" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="OQ9-EI-zqz"/>
+                                    <constraint firstAttribute="width" secondItem="hJT-gv-Lxe" secondAttribute="height" id="avW-v0-2Hd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="favBtn" destination="F0T-JU-BD1" eventType="touchUpInside" id="7ZN-jJ-ooO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wsm-sC-gFu"/>
                         <color key="backgroundColor" name="customBlue"/>
                         <constraints>
                             <constraint firstItem="mIJ-uu-m29" firstAttribute="top" secondItem="s3A-wM-dut" secondAttribute="bottom" constant="20" id="05n-BM-cSK"/>
+                            <constraint firstItem="hJT-gv-Lxe" firstAttribute="centerX" secondItem="rTh-S8-Wow" secondAttribute="centerX" id="0CR-NB-DRh"/>
                             <constraint firstItem="s3A-wM-dut" firstAttribute="top" secondItem="0EO-jd-NZU" secondAttribute="bottom" constant="20" id="1fq-a7-SZz"/>
                             <constraint firstItem="wsm-sC-gFu" firstAttribute="bottom" secondItem="cv8-TP-ioO" secondAttribute="bottom" constant="30" id="Btk-eh-lda"/>
                             <constraint firstItem="k9f-LD-OtI" firstAttribute="centerX" secondItem="rTh-S8-Wow" secondAttribute="centerX" id="Cwe-u4-eJh"/>
@@ -266,6 +284,7 @@
                             <constraint firstItem="cv8-TP-ioO" firstAttribute="centerX" secondItem="rTh-S8-Wow" secondAttribute="centerX" id="Vqx-vB-2Qe"/>
                             <constraint firstItem="s3A-wM-dut" firstAttribute="centerX" secondItem="rTh-S8-Wow" secondAttribute="centerX" id="WAC-GW-p13"/>
                             <constraint firstItem="VCi-jm-kqL" firstAttribute="leading" secondItem="wsm-sC-gFu" secondAttribute="leading" constant="20" id="Zo6-Mw-KjX"/>
+                            <constraint firstItem="hJT-gv-Lxe" firstAttribute="top" secondItem="Ooi-Gq-eAf" secondAttribute="bottom" constant="20" id="c4B-gD-c2M"/>
                             <constraint firstItem="mIJ-uu-m29" firstAttribute="centerX" secondItem="rTh-S8-Wow" secondAttribute="centerX" id="dPj-cI-j0g"/>
                             <constraint firstItem="wsm-sC-gFu" firstAttribute="trailing" secondItem="0EO-jd-NZU" secondAttribute="trailing" id="gPx-mP-fJs"/>
                             <constraint firstItem="0EO-jd-NZU" firstAttribute="leading" secondItem="wsm-sC-gFu" secondAttribute="leading" id="kA1-K0-nV5"/>
@@ -278,6 +297,7 @@
                     </view>
                     <connections>
                         <outlet property="discountPriceLabel" destination="PoA-yP-Dmz" id="sKL-xu-lVv"/>
+                        <outlet property="favIco" destination="hJT-gv-Lxe" id="nI5-lk-xO5"/>
                         <outlet property="gameImageView" destination="0EO-jd-NZU" id="3km-Ry-d9j"/>
                         <outlet property="gameTitleLabel" destination="VCi-jm-kqL" id="MJA-9o-8Zk"/>
                         <outlet property="gamepadImage" destination="efZ-t7-7DD" id="6jg-wN-h6f"/>
@@ -300,6 +320,7 @@
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>
         <image name="keyboard" catalog="system" width="128" height="78"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="customBlue">
             <color red="0.074509803921568626" green="0.14117647058823529" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -309,6 +330,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

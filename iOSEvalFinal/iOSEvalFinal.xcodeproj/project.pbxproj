@@ -24,6 +24,8 @@
 		65DBF1732AE9226600FB971B /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1712AE9226600FB971B /* Favorite+CoreDataClass.swift */; };
 		65DBF1742AE9226600FB971B /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1722AE9226600FB971B /* Favorite+CoreDataProperties.swift */; };
 		65DBF1762AE9228F00FB971B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1752AE9228F00FB971B /* DataService.swift */; };
+		65DBF1792AE92A0200FB971B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBF1772AE92A0200FB971B /* CustomTableViewCell.swift */; };
+		65DBF17A2AE92A0200FB971B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65DBF1782AE92A0200FB971B /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		65DBF1712AE9226600FB971B /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		65DBF1722AE9226600FB971B /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		65DBF1752AE9228F00FB971B /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		65DBF1772AE92A0200FB971B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		65DBF1782AE92A0200FB971B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				65DBF1552AE8F5C700FB971B /* FavoritesViewController.swift */,
+				65DBF1772AE92A0200FB971B /* CustomTableViewCell.swift */,
+				65DBF1782AE92A0200FB971B /* CustomTableViewCell.xib */,
 			);
 			path = favorite;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				65DBF14C2AE8F46200FB971B /* LaunchScreen.storyboard in Resources */,
 				65DBF1492AE8F46200FB971B /* Assets.xcassets in Resources */,
 				65DBF1472AE8F46100FB971B /* Main.storyboard in Resources */,
+				65DBF17A2AE92A0200FB971B /* CustomTableViewCell.xib in Resources */,
 				65DBF1632AE8FBF500FB971B /* CustomCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +231,7 @@
 				65DBF1402AE8F46100FB971B /* AppDelegate.swift in Sources */,
 				65DBF1562AE8F5C700FB971B /* FavoritesViewController.swift in Sources */,
 				65DBF1762AE9228F00FB971B /* DataService.swift in Sources */,
+				65DBF1792AE92A0200FB971B /* CustomTableViewCell.swift in Sources */,
 				65DBF1732AE9226600FB971B /* Favorite+CoreDataClass.swift in Sources */,
 				65DBF15C2AE8F78000FB971B /* ApiDataModel.swift in Sources */,
 				65DBF16B2AE9213C00FB971B /* FavoriteDB.xcdatamodeld in Sources */,

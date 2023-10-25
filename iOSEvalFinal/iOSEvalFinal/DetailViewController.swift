@@ -7,9 +7,10 @@
 
 import UIKit
 import AlamofireImage
+import SafariServices
 
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet weak var gameTitleLabel: UILabel!
     @IBOutlet weak var gameImageView: UIImageView!
     
@@ -25,11 +26,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var mouseImage: UIImageView!
     @IBOutlet weak var gamepadImage: UIImageView!
     
+    @IBOutlet weak var favIco: UIButton!
+    
     var passData: Featured!
+    private var isFavorite: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         gameTitleLabel.text = passData.name
         // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
         if let imageURL = URL(string: passData.largeCapsuleImage) {
@@ -42,9 +46,9 @@ class DetailViewController: UIViewController {
             string: oldPrice,
             attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
         )
-
+        
         oldPriceLabel.attributedText = attributedText
-
+        
         oldPriceLabel.isHidden = !passData.discounted
         discountPriceLabel.text = "\(passData.discountPercent) %"
         if passData.discounted {
@@ -62,13 +66,32 @@ class DetailViewController: UIViewController {
         linuxImage.isHidden = !passData.linuxAvailable
         
         gamepadImage.isHidden = !(passData.controllerSupport == "full")
+        
+        // gère l'affichage des favoris
+        if DataService.shared.idExists(id: passData.id) {
+            favIco.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            isFavorite = true
+        } else {
+            favIco.setImage(UIImage(systemName: "star"), for: .normal)
+            isFavorite = false
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-   
-    */
-
+    
+    @IBAction func favBtn() {
+        isFavorite?.toggle()
+        favIco.setImage(isFavorite! ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"), for: .normal)
+        if isFavorite! {
+            DataService.shared.addFavorite(id: Int32(passData.id), name: passData.name, price: Float(passData.finalPrice ?? 8), imageUrl: passData.largeCapsuleImage)
+        } else {
+            DataService.shared.deleteFavoriteById(withID: passData.id)
+        }
+    }
+    
+    @IBAction func openWebPage(_ sender: UIButton) {
+        if let url = URL(string: "https://store.steampowered.com") {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
+    }
 }

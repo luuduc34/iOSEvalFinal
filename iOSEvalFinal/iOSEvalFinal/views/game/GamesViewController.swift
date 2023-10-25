@@ -35,8 +35,6 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         gameCollectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil),
                                 forCellWithReuseIdentifier: "CustomCollectionViewCell")
         appelReseau()
-        
-        DataService.shared.addFavorite(id: 32, name: "Sonic", price: 35, imageUrl: "Hello")
     }
     
     // MARK: - Connexion à l'api
@@ -99,6 +97,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         customCell.gamePriceLabel.text = String(format: "%.2f", gameData.finalPrice! / 100) + "€"
+
         
         return customCell
     }
