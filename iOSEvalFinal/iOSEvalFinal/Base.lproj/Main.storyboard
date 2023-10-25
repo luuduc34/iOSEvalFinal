@@ -114,6 +114,21 @@
             </objects>
             <point key="canvasLocation" x="1630" y="794"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Tt4-E1-9eG">
+            <objects>
+                <viewController id="F0T-JU-BD1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rTh-S8-Wow">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wsm-sC-gFu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ujc-VS-Gk4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1989" y="72"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>

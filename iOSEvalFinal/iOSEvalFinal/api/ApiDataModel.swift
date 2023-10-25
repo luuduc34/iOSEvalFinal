@@ -28,7 +28,7 @@ struct Featured: Codable {
     let discounted: Bool
     let discountPercent: Int
     let originalPrice: Int?
-    let finalPrice: Int
+    let finalPrice: Int?
     let currency: Currency
     let largeCapsuleImage, smallCapsuleImage: String
     let windowsAvailable, macAvailable, linuxAvailable, streamingvideoAvailable: Bool

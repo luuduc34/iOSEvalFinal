@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class GamesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -22,32 +23,22 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         //layout.itemSize = CGSize(width: 110, height: 170)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: 160)
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 5
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: 240)
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         // Lie le layout à la collectionView
         gameCollectionView.collectionViewLayout = layout
         gameCollectionView.delegate = self
         gameCollectionView.dataSource = self
         gameCollectionView.isPagingEnabled = false
-        gameCollectionView.register(UINib(nibName: "CustomTrendingCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: "CustomTrendingCollectionViewCell")
-        
+        gameCollectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil),
+                                forCellWithReuseIdentifier: "CustomCollectionViewCell")
         appelReseau()
-    }
-    // MARK: - Gestion de la collectionView
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gameList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
     }
     
     // MARK: - Connexion à l'api
-    @objc func appelReseau() {
-        // appel réseau avec query parameters
+    func appelReseau() {
         
         AF.request(apiUrl, method: .get).response { dataResponse in
             switch dataResponse.result {
@@ -60,6 +51,8 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
                     //On revient dans main car on modifie l'UI
                     DispatchQueue.main.async {
                         self.gameList = GameResponse.featuredWin // Stocker les données obtenues
+                        self.gameCollectionView.reloadData()
+                        //print(self.gameList)
                     }
                     // On gère les erreurs
                 } catch let error {
@@ -69,5 +62,22 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
                 print("ERROR DETECTED: \(error)")
             }
         }
+    }
+    
+    // MARK: - Gestion de la collectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return gameList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let customCell = gameCollectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
+        let gameData = gameList[indexPath.row]
+        // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
+        if let imageURL = URL(string: gameData.largeCapsuleImage) {
+            customCell.gameTitleLabel.text = gameData.name
+            customCell.gameImage.af.setImage(withURL: imageURL)
+            customCell.gamePriceLabel.text = String(format: "%.1f", gameData.finalPrice ?? 8)
+        }
+        return customCell
     }
 }
