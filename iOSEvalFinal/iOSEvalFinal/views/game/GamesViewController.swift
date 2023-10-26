@@ -23,17 +23,17 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         //layout.itemSize = CGSize(width: 110, height: 170)
-        layout.minimumInteritemSpacing = 5
+        layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 5
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: 240)
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 5, height: 240)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
         // Lie le layout à la collectionView
         gameCollectionView.collectionViewLayout = layout
         gameCollectionView.delegate = self
         gameCollectionView.dataSource = self
         gameCollectionView.isPagingEnabled = false
         gameCollectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: "CustomCollectionViewCell")
+                                    forCellWithReuseIdentifier: "CustomCollectionViewCell")
         appelReseau()
     }
     
@@ -73,7 +73,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         let customCell = gameCollectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
         let gameData = gameList[indexPath.row]
         // Utilise AlamofireImage pour télécharger et afficher l'image depuis l'URL
-        if let imageURL = URL(string: gameData.largeCapsuleImage) {
+        if let imageURL = URL(string: gameData.smallCapsuleImage) {
             customCell.gameImage.af.setImage(withURL: imageURL)
         }
         customCell.gameTitleLabel.text = gameData.name
@@ -84,9 +84,9 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
             string: oldPrice,
             attributes: [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
         )
-
+        
         customCell.oldPriceLabel.attributedText = attributedText
-
+        
         customCell.oldPriceLabel.isHidden = !gameData.discounted
         
         customCell.discountLabel.text = "\(gameData.discountPercent) %"
@@ -96,8 +96,14 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
             customCell.gamePriceLabel.textColor = UIColor.white
         }
         
-        customCell.gamePriceLabel.text = String(format: "%.2f", gameData.finalPrice! / 100) + "€"
-
+        if !(gameData.finalPrice == 0) {
+            customCell.gamePriceLabel.text = String(format: "%.2f", gameData.finalPrice! / 100) + "€"
+        } else {
+            customCell.gamePriceLabel.textColor = .green
+            customCell.gamePriceLabel.font = UIFont.systemFont(ofSize: 30)
+            customCell.gamePriceLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            customCell.gamePriceLabel.text = "Free"
+        }
         
         return customCell
     }

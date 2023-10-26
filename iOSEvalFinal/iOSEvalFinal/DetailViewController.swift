@@ -56,12 +56,21 @@ class DetailViewController: UIViewController {
         } else {
             newPriceLabel.textColor = UIColor.white
         }
-        newPriceLabel.text = String(format: "%.2f", passData.finalPrice! / 100) + "€"
-        
+        if !(passData.finalPrice == 0) {
+            newPriceLabel.text = String(format: "%.2f", passData.finalPrice! / 100) + "€"
+        } else {
+            newPriceLabel.text = "Free"
+        }
+        windowsImage.backgroundColor = .lightGray
+        windowsImage.layer.cornerRadius = windowsImage.frame.width / 2
         windowsImage.image = UIImage(named: "windows")
         windowsImage.isHidden = !passData.windowsAvailable
+        macImage.backgroundColor = .lightGray
+        macImage.layer.cornerRadius = windowsImage.frame.width / 2
         macImage.image = UIImage(named: "mac")
         macImage.isHidden = !passData.macAvailable
+        linuxImage.backgroundColor = .lightGray
+        linuxImage.layer.cornerRadius = windowsImage.frame.width / 2
         linuxImage.image = UIImage(named: "linux")
         linuxImage.isHidden = !passData.linuxAvailable
         
@@ -76,7 +85,18 @@ class DetailViewController: UIViewController {
             isFavorite = false
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Mettez ici le code pour rafraîchir votre tableau
+        // gère l'affichage des favoris
+        if DataService.shared.idExists(id: passData.id) {
+            favIco.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            isFavorite = true
+        } else {
+            favIco.setImage(UIImage(systemName: "star"), for: .normal)
+            isFavorite = false
+        }
+    }
     
     @IBAction func favBtn() {
         isFavorite?.toggle()
@@ -89,7 +109,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func openWebPage(_ sender: UIButton) {
-        if let url = URL(string: "https://store.steampowered.com") {
+        if let url = URL(string: "https://store.steampowered.com/app/\(passData.id)") {
             let safariViewController = SFSafariViewController(url: url)
             present(safariViewController, animated: true, completion: nil)
         }

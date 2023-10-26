@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     let context = DataService.shared.context
     var resultsController: NSFetchedResultsController<Favorite>!
+    var gameList: [Favorite] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             customCell.gameImage.af.setImage(withURL: imageURL)
         }
         customCell.gameName.text = game?.name
-        customCell.gamePrice.text = String(format: "%.2f", (game?.price ?? 8) / 100) + "€"
+        if !(game?.price == 0) {
+            customCell.gamePrice.text = String(format: "%.2f", Float(game!.price) / 100) + "€"
+        } else {
+            customCell.gamePrice.textColor = .green
+            customCell.gamePrice.font = UIFont.systemFont(ofSize: 30)
+            customCell.gamePrice.font = UIFont.boldSystemFont(ofSize: 20)
+            customCell.gamePrice.text = "Free"
+        }
         
         return customCell
     }
@@ -80,5 +88,4 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
             favoriteTableView.reloadData()
         }
     }
-    
 }
